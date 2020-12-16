@@ -1,0 +1,321 @@
+@charset "UTF-8";
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@-webkit-keyframes cursor {
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes cursor {
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+* {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+* body {
+  margin: 0;
+  background-image: url("webb.png");
+  height: 100%;
+  width: 100%;
+  /*
+        .btn_miko{
+            background-color:#C2E388;  
+        }
+        .btn_pato{
+            background-color:#ee9cbe;  
+        }
+        .btn_mea{
+            background-color:#edd8fd;  
+        }
+        .btn_sha{
+            background-color:#474563;  
+        }
+        .btn_yuge{
+            background-color:#8adfee;  
+        }
+        .btn_meto{
+            background-color:#f07e62;  
+        }
+        .btn_kanon{
+            background-color:#80e4f1;  
+        }
+        .btn_ank{
+            background-color:#d66eb3;  
+        }
+        .btn_wat{
+            background-color:#7f8580;  
+        }
+        .btn_camo{
+            background-color:#dbcd50;  
+        }
+        .btn_rin{
+            background-color:#df5a5a;  
+        }
+        .btn_anna{
+            background-color:#b044db;  
+        }
+        .btn_chris{
+            background-color:#6cd67e;  
+        }
+        .btn_haneru{
+            background-color:#ccce46;  
+        }
+        .btn_soya{
+            background-color:#688dd3;  
+        }
+        .btn_ran{
+            background-color:#53c744;  
+        }
+        .btn_izu{
+            background-color:#af775d;  
+        }
+        .btn_kuku{
+            background-color:#c75735;  
+        }
+        .btn_mimi{
+            background-color:#c2c2c2;  
+        }
+        .btn_hasi{
+            background-color:#53804d;  
+        }
+        .btn_hira{
+            background-color:#a85d46;  
+        }
+        .btn_sesimaru{
+            background-color:#c9aaa1;  
+        }
+        */
+}
+
+* body a {
+  color: white;
+}
+
+* body header {
+  padding: 30px 4% 10px;
+  position: fixed;
+  opacity: 0.8;
+  top: 0;
+  width: 100%;
+  background-color: #3f3f3f;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+* body header .menu_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  padding-right: 10%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+* body header h1 {
+  margin: 0 0 20px 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+* body header a {
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  text-decoration: none;
+  color: white;
+}
+
+* body header a:hover {
+  opacity: 0.7;
+}
+
+* body header ul {
+  list-style: none;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+* body header li {
+  margin: 0 0 20px 30px;
+  font-size: 14px;
+}
+
+* body .tofu {
+  width: 100%;
+  height: 100px;
+}
+
+* body .explanation {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+* body main {
+  width: 100%;
+  height: 100%;
+}
+
+* body .what {
+  text-align: center;
+  width: 17ch;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: .05em solid;
+  -webkit-animation: typing 1s steps(13), cursor 1s steps(1) infinite;
+          animation: typing 1s steps(13), cursor 1s steps(1) infinite;
+}
+
+* body .graph_and_btn_and_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: no-wrap;
+      flex-wrap: no-wrap;
+  /* 改行不許可 */
+  width: 100%;
+  height: 100%;
+}
+
+* body .graph_and_form {
+  width: 60%;
+  height: 100%;
+}
+
+* body .heart {
+  color: pink;
+}
+
+* body .btn_gp {
+  width: 40%;
+  height: 600px;
+  opacity: 60%;
+  overflow-y: scroll;
+}
+
+* body .btn_gp div {
+  padding: 15px;
+}
+
+* body .btn_gp .fa-angle-double-down {
+  color: #5f5f5f;
+  position: absolute;
+  font-size: 300px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transform: translate(0, 200px);
+          transform: translate(0, 200px);
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+  -webkit-animation: fadeIn 0.3s ease-in-out 3s 5 alternate both;
+          animation: fadeIn 0.3s ease-in-out 3s 5 alternate both;
+  -webkit-transition-duration: 3s;
+          transition-duration: 3s;
+}
+
+* body .btn_gp .fa-angle-double-down:hover {
+  /* transform:translate(0,200px);
+                    animation:fadeIn 2s ease-in-out;   
+                    animation-fill-mode:forwards;
+                    transition-duration:1s;
+                    animation-iteration-count: 1;*/
+}
+
+* body .btn_gp .odd {
+  background-color: black;
+}
+
+* body .btn_gp .even {
+  background-color: #3f3f3f;
+}
+
+* body .form_container {
+  width: 80%;
+  margin: 40px auto;
+  max-width: 1000px;
+  padding: 1em 1.5em;
+  border: solid 2px #000000;
+  /*線*/
+}
+
+* body .twitter_link {
+  color: black;
+}
+
+* body .submit_btn {
+  font-size: 20px;
+  width: 200px;
+  height: 40px;
+  color: #fff;
+  background: #b9cfff;
+  /*背景色*/
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+* body .submit_btn:hover {
+  opacity: 0.7;
+}
+
+* body .btn {
+  padding: 0.5em 0.5em;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+* body .btn:hover {
+  opacity: 0.7;
+}
+
+* body .time_explanation {
+  position: relative;
+  left: 600px;
+  bottom: 200px;
+}
+/*# sourceMappingURL=style.css.map */

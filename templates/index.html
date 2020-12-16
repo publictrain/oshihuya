@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSHIHUYASU</title>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+<body>
+  <header>
+    <h1>
+      <a href="/">OSHIHUYASU</a>
+   </h1>
+   <div class="menu_wrapper">
+   <nav class="pc-nav">
+      <ul>
+         <li><a href="about.html">ABOUT</a></li>
+         <li><a href="https://twitter.com/publictrain2">CONTACT</a></li>
+      </ul>
+   </nav>
+  </div>
+  </header>
+  <main>
+    {% block content %}
+
+  <div class='tofu'></div>
+  <div class='graph_and_btn_and_form'>
+  <div class='graph_and_form'>
+        <canvas id="myBarChart" width="350" height="150"></canvas>
+
+        <form action="/" method="POST" enctype="multipart/form-data">
+          <div class="form_container">
+            <label for="name">TwitterユーザID：＠</label>
+            <input maxlength='15' pattern="^[0-9A-Za-z_]+$" type="text" id="name" name="name"  required>	
+              <div>
+            <label for="name">調べるツイート数</label>
+            <input type="number" id="name2" name="name2" min="0" placeholder="半角数字" required>	
+          </div>
+          <div>
+            <input class="submit_btn" type="submit" value="どぅーいっと！">
+          </div>
+        </form>
+
+        {% if name == None %}
+          <div class='input_explanation'>
+            <p>1.Twitterユーザ名を入力します。</p>
+            <p>2.半角数字で最新のツイートから何件までのデータを取ってくるか指定します。</p>
+            <p>3.どぅーいっと！</p>
+          </div>
+        </div><!--form_container-->
+
+          {% else %}
+          {% if error !=  null %}
+              <p>有効なユーザIDを入力してください</p>
+          {% else %}
+          <p>{{name}}さんは大体{{modomodo}}時が暇ですね！</p>
+          <p>{{name}}さんと最も相性が良いのは<b id='aishou_person'></b>さんですね！</p>
+          <p><b id="vname"></b><b class='heart'>♥</b>相性:<b id="love"></b>%</p>
+          <p></p>
+          </div><!--graph_and_form-->
+
+        
+
+
+  </div><!--graph_and_btn-->
+
+        <div class = "btn_gp">
+        <div class='odd'><a href="#jumpjump" class="btn btn_miko" id="btn_miko">堰代ミコのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_pato" id="btn_pato">周防パトラのデータを追加</a></div>
+        <div class='odd'><a href="#jumpjump" class="btn btn_mea" id="btn_mea">西園寺メアリのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_sha" id="btn_sha">島村シャルロットのデータを追加</a></div>
+        <div class='odd'><a href="#jumpjump" class="btn btn_yuge" id="btn_yuge">杏戸ゆげのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_meto" id="btn_meto">小森めとのデータを追加</a></div>
+        <div class='odd'><a href="#jumpjump" class="btn btn_kanon" id="btn_kanon">花奏かのんのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_ank" id="btn_ank">季咲あんこのデータを追加</a></div>
+        <div class='odd'><a href="#jumpjump" class="btn btn_wat" id="btn_wat">不摩わっとのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_camo" id="btn_camo">鴨見カモミのデータを追加</a></div>
+        <div class='odd'><a href="#jumpjump" class="btn btn_rin" id="btn_rin">龍ヶ崎リンのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_anna" id="btn_anna">虎城アンナのデータを追加</a></div>
+        <div class='odd'><a href="#jumpjump" class="btn btn_chris" id="btn_chris">獅子王クリスのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_haneru" id="btn_haneru">因幡はねるのデータを追加</a></div>
+        <div class='odd'><a href="#jumpjump" class="btn btn_soya" id="btn_soya">宗谷いちかのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_ran" id="btn_ran">日ノ隈らんのデータを追加</a></div>
+        <div class='odd'><a href="#jumpjump" class="btn btn_izu" id="btn_izu">柚原いづみのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_kuku" id="btn_kuku">風見くくのデータを追加</a></div>
+        <div class='odd'><a href="#jumpjump" class="btn btn_mimi" id="btn_mimi">白宮みみのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_hasi" id="btn_hasi">羽柴なつみのデータを追加</a></div>
+        <div class='odd'><a href="#jumpjump" class="btn btn_hira" id="btn_hira">飛良ひかりのデータを追加</a></div>
+        <div class='even'><a href="#jumpjump" class="btn btn_sesimaru" id="btn_sesimaru">瀬島るいのデータを追加</a></div>
+        </div><!-- btn_gp-->
+
+        <div id = "jumpjump"></div>
+        {% endif %}
+      </div>
+      </main>
+        <script>
+            //var miko = [];
+            var vtub = [];
+            var user_list = {{sent_list}};
+            var aishou_list =[];
+            var aishou_ans = 0;
+            var old_konbu = 0;
+            var vtub_list = [{{ank}},{{anna}},{{camo}},{{chris}},{{haneru}},{{hasi}},{{hira}},{{izu}},{{kanon}},{{kuku}},
+              {{mea}},{{meto}},{{miko}},{{mimi}},{{pato}},{{ran}},{{rin}},{{sesimaru}},{{sha}},{{soya}},{{wat}},{{yuge}}]
+
+            var members = {1:'季咲あんこ',2:'虎城アンナ',3:'鴨見カモミ',4:'獅子王クリス',5:'因幡はねる',6:'羽柴なつみ',7:'飛良ひかり',8:'柚原いづみ',9:'花奏かのん',
+            10:'風見くく',11:'西園寺メアリ',12:'小森めと',13:'堰代ミコ',14:'白宮みみ',15:'周防パトラ',16:'日ノ隈らん',17:'龍ヶ崎リン',18:'瀬島るい',19:'島村シャルロット',20:'宗谷いちか',21:'不摩わっと',22:'杏戸ゆげ'}
+            function aishou() {
+
+              for(var i=0;i<22;i++){
+                  var konbu = Correl(vtub_list[i],user_list);
+                  aishou_list.push(konbu);
+               }
+               aishou_ans = Math.max.apply(null, aishou_list);
+               aishou_index = aishou_list.indexOf(aishou_ans)+1;
+               document.getElementById("aishou_person").innerHTML = members[aishou_index];
+
+              }
+            aishou()
+
+            function ank_graph() {
+              vtub = {{ank}}; // 配列を初期化
+            }
+            function anna_graph() {
+              vtub = {{anna}}; // 配列を初期化
+            }
+            function camo_graph() {
+              vtub = {{camo}}; // 配列を初期化
+            }
+            function chris_graph() {
+              vtub = {{chris}}; // 配列を初期化
+            }
+            function haneru_graph() {
+              vtub = {{haneru}}; // 配列を初期化
+            }
+            function hasi_graph() {
+              vtub = {{hasi}}; // 配列を初期化
+            }
+            function hira_graph() {
+              vtub = {{hira}}; // 配列を初期化
+            }
+            function izu_graph() {
+              vtub = {{izu}}; // 配列を初期化
+            }
+            function kanon_graph() {
+              vtub = {{kanon}}; // 配列を初期化
+            }
+            function kuku_graph() {
+              vtub = {{kuku}}; // 配列を初期化
+            }
+            function mea_graph() {
+              vtub = {{mea}}; // 配列を初期化
+            }
+            function meto_graph() {
+              vtub = {{meto}}; // 配列を初期化
+            }
+            function miko_graph() {
+              vtub = {{miko}}; // 配列を初期化
+            }
+            function mimi_graph() {
+              vtub = {{mimi}}; // 配列を初期化
+            }
+            function pato_graph() {
+              vtub = {{pato}}; // 配列を初期化
+            }
+            function ran_graph() {
+              vtub = {{ran}}; // 配列を初期化
+            }
+            function rin_graph() {
+              vtub = {{rin}}; // 配列を初期化
+            }
+            function sesimaru_graph() {
+              vtub = {{sesimaru}}; // 配列を初期化
+            }
+            function sha_graph() {
+              vtub = {{sha}}; // 配列を初期化
+            }
+            function soya_graph() {
+              vtub = {{soya}}; // 配列を初期化
+            }
+            function wat_graph() {
+              vtub = {{wat}}; // 配列を初期化
+            }
+            function yuge_graph() {
+              vtub = {{yuge}}; // 配列を初期化
+            }
+            drawChart();
+            function drawChart(){
+            var ctx = document.getElementById("myBarChart");
+
+            window.myBarChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ['0時', '1時', '2時', '3時', '4時', '5時', '6時','7時', '8時', '9時', '10時', 
+                '11時', '12時', '13時', '14時', '15時', '16時', '17時', '18時', '19時', '20時', '21時', '22時', '23時'],
+                datasets: [
+                  {
+                    label: 'ツイート数',
+                    data: user_list,//これが原因でエラー起きてるけど動いてる
+                    backgroundColor: "rgba(245,93,136,0.5)"
+                  },{
+                    label: '配信開始数',
+                    type: 'line',
+                    fill: false,
+                    borderColor: 'rgb(123,111,225)',
+                    data: vtub,
+                    backgroundColor: "rgba(130, 186, 255)"
+                  }
+                ]
+              },
+              options: {
+                animation: {
+                  animationEasing: 'linear',
+                  animationSteps: 1000,//これがステップ
+                  duration :1200,
+                },
+                title: {
+                  display: true,
+                  text: '時間別ツイート数'
+                },
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      suggestedMax: 0,
+                      suggestedMin: 0,
+                      stepSize: 10,
+                      callback: function(value, index, values){
+                        return  value +  'ツイート'
+                      }
+                    }
+                  }]
+                },
+              }
+            });
+                                  }
+  //ここからはにすと
+            document.getElementById('btn_miko').onclick = function() {
+  // すでにグラフ（インスタンス）が生成されている場合は、グラフを破棄する
+              if (myBarChart) {
+                myBarChart.destroy();
+                miko_graph(); // グラフを再描画
+                console.log('miko')
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "堰代ミコ";
+
+            }
+            document.getElementById('btn_pato').onclick = function() {
+  // すでにグラフ（インスタンス）が生成されている場合は、グラフを破棄する
+              if (myBarChart) {
+                myBarChart.destroy();
+                pato_graph(); // グラフを再描画
+                console.log('pato')
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "周防パトラ";
+
+            }
+            document.getElementById('btn_mea').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                mea_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "西園寺メアリ";
+
+            }
+            document.getElementById('btn_sha').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                sha_graph();
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "島村シャルロット";
+
+            }
+            document.getElementById('btn_yuge').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                yuge_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "杏戸ゆげ";
+
+            }
+            document.getElementById('btn_meto').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                meto_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "小森めと";
+
+            }
+            document.getElementById('btn_kanon').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                kanon_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "花奏かのん";
+
+            }
+            document.getElementById('btn_ank').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                ank_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "季咲あんこ";
+
+            }
+            document.getElementById('btn_wat').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                wat_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "不磨わっと";
+
+            }
+            document.getElementById('btn_camo').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                camo_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "鴨見カモミ";
+
+            }
+            document.getElementById('btn_rin').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                mea_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "龍ヶ崎リン";
+
+            }
+            document.getElementById('btn_anna').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                anna_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "虎城アンナ";
+
+            }
+            document.getElementById('btn_chris').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                chris_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "獅子王クリス";
+
+            }
+            document.getElementById('btn_haneru').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                haneru_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "因幡はねる";
+
+            }
+            document.getElementById('btn_soya').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                soya_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "宗谷 いちか";
+
+            }
+            document.getElementById('btn_ran').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                ran_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "日ノ隈らん";
+
+            }
+            document.getElementById('btn_izu').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                izu_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "柚原いづみ";
+
+            }
+            document.getElementById('btn_kuku').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                kuku_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "風見くく";
+
+            }
+            document.getElementById('btn_mimi').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                mimi_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "白宮みみ";
+
+            }
+            document.getElementById('btn_hasi').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                hasi_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "羽柴なつみ";
+
+            }
+            document.getElementById('btn_hira').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                hira_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "飛良ひかり";
+
+            }
+            document.getElementById('btn_sesimaru').onclick = function() {
+              if (myBarChart) {
+                myBarChart.destroy();
+                sesimaru_graph(); 
+              }
+                drawChart();
+                var love = Correl(vtub , user_list);
+                document.getElementById("love").innerHTML = love;
+                document.getElementById("vname").innerHTML = "瀬島るい";
+
+            }
+            
+            function Correl(xx,yy){ //xx yy is array.
+            var m = Math
+              ,n;
+            if (xx.length==yy.length){
+              n = xx.length;
+              var sumx=0, sumy=0, sumxx=0, sumyy=0, sumxy=0 
+                ,xm ,ym ,xxi ,yyi
+                ,sumxxm=0, sumyym=0, sumxym=0
+                ,i;
+              for(i=0; i<n; i++){
+                sumx += (xx[i]-0); //xxの総和
+                sumy += (yy[i]-0); //yyの総和
+              }
+              xm = sumx/n; //xxの平均
+              ym = sumy/n; //yyの平均
+              for(i=0; i<n; i++){
+                xxi = (xx[i]-0);
+                yyi = (yy[i]-0);
+                sumxxm += (xxi-xm) * (xxi-xm); //(xi-average(x))^2
+                sumyym += (yyi-ym) * (yyi-ym);
+                sumxym += (xxi-xm) * (yyi-ym); //(xi-average(x))*(yi-average(y))
+              }                                  
+              var soukan = sumxym / m.sqrt(sumxxm) / m.sqrt(sumyym); // = sumxym/Math.sqrt(sumxxm*sumyym); //sqrtは平方根を返す
+              var ans = Math.abs(Math.round(soukan*100)) / 2 +　50
+              return ans
+            }else{
+              throw new Error("Array length is not same.");
+            }
+          }
+            </script>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>
