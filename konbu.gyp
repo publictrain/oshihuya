@@ -7,6 +7,7 @@ import re
 import pandas as pd
 import numpy as np
 import pprint
+import os
 
 # 取得した各種キーを格納---------------------------------------------
 consumer_key ="VFK2ZOVvUyBGjElOiSVFVdd3t"
@@ -119,7 +120,7 @@ def twi():
 #    print(peko)
 #    return render_template('index.html', peko=peko)
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=8888, threaded=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
 #2020/11/1117:23    今やってることフォームのバリデーションとエラーハンドリング
 #2020/11/1120:56    バリデーション完了？
