@@ -1,1 +1,1 @@
-web: gunicorn konbu:app --log-file=-
+web: gunicorn app:app --log-file=-
