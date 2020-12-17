@@ -198,6 +198,22 @@
   height: 100%;
 }
 
+* body .mituke_wrapper {
+  width: 100%;
+  height: auto;
+}
+
+* body .mituke {
+  font-size: 20px;
+  text-align: center;
+  width: 17ch;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: .05em solid;
+  -webkit-animation: typing 1s steps(13), cursor 1s steps(1) infinite;
+          animation: typing 1s steps(13), cursor 1s steps(1) infinite;
+}
+
 * body .what {
   text-align: center;
   width: 17ch;

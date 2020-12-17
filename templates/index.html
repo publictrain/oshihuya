@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CHXKZ6S2TB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CHXKZ6S2TB');
+</script>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="static/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +45,8 @@
 
         <form action="/" method="POST" enctype="multipart/form-data">
           <div class="form_container">
+            <div class='mituke_wrapper'><h1 class='mituke'>生活リズムから推しを見つけよう！</h1></div>
+
             <label for="name">TwitterユーザID：＠</label>
             <input maxlength='15' pattern="^[0-9A-Za-z_]+$" type="text" id="name" name="name"  required>	
               <div>
