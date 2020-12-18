@@ -235,6 +235,8 @@
   border-right: .05em solid;
   -webkit-animation: typing 1s steps(13), cursor 1s steps(1) infinite;
           animation: typing 1s steps(13), cursor 1s steps(1) infinite;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
 }
 
 * body .what {

@@ -123,6 +123,7 @@
             border-right: .05em solid;
             animation: typing 1s steps(13),
             cursor 1s steps(1) infinite;
+            animation-delay: 1s;
         }
         .what{
             text-align: center;
