@@ -15,7 +15,24 @@
 }
 
 
-  
+@media screen and (max-width:750px) {
+    .mituke{
+        font-size: 8px!important;
+    }    
+    .btn_gp{
+        font-size:9px!important;
+        //width:35%!important;
+        div{
+            padding:4px 2px!important;
+        }
+    }
+    .canvas_wrapper{
+        position: relative;
+        width: 100%; 
+        height: 30px;
+    }
+}
+
 *{
     text-decoration: none;
     margin:0;
@@ -88,7 +105,25 @@
             width:100%;
             height:100%;
         }
-
+        .canvas_wrapper{
+            position: relative;
+            width: 100%; 
+            height: 400px;
+        }
+        .mituke_wrapper{
+            width: 100%;
+            height: auto;
+        }
+        .mituke{
+            font-size: 20px;
+            text-align: center;
+            width: 17ch;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .05em solid;
+            animation: typing 1s steps(13),
+            cursor 1s steps(1) infinite;
+        }
         .what{
             text-align: center;
             width: 17ch;
@@ -117,6 +152,7 @@
         .btn_gp{
             //display:flex;
             //flex-wrap: wrap;
+            padding:0 0 0 10px;
             width:40%;
             height:600px;
             //background-color: black;
