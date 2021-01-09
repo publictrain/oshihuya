@@ -1,4 +1,5 @@
 import tweepy
+import json
 from statistics import mode
 from flask import Flask, render_template , request
 import collections
@@ -7,8 +8,7 @@ import re
 import pandas as pd
 import numpy as np
 import pprint
-import os
-
+import datetime
 # 取得した各種キーを格納---------------------------------------------
 consumer_key ="VFK2ZOVvUyBGjElOiSVFVdd3t"
 consumer_secret ="tr9IVfluXTEvUCGROUAU25xx6ra669kyRuecaUmB9LKqMgKObW"
@@ -77,41 +77,84 @@ def twi():
         
 
         print(Account)
-        pato=[23, 0, 0, 0, 0, 0, 0, 1, 1, 0, 7, 0, 0, 1, 0, 14, 0, 0, 1, 4, 1, 5, 34, 7]
-        sha=[3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 20, 1, 5, 1, 2, 3, 5, 7, 6, 38]
-        mea=[17, 0, 0, 0, 0, 0, 0, 19, 0, 0, 0, 11, 8, 2, 0, 1, 0, 1, 1, 0, 19, 9, 6, 5]
-        miko=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 6, 29, 4, 5, 42, 2, 3, 2, 0, 0]
-        yuge=[4, 3, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 2, 0, 1, 5, 4, 6, 8, 21, 10, 18, 5, 8]
-        meto=[5, 2, 0, 1, 0, 0, 0, 1, 14, 2, 0, 2, 3, 1, 0, 1, 2, 4, 11, 3, 11, 10, 17, 9]
-        kanon=[10, 2, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 2, 1, 3, 3, 5, 14, 11, 17, 16, 4, 3]
-        ank=[1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5, 4, 33, 19, 7, 5, 9, 9, 2]
-        wat=[5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 6, 8, 8, 7, 11, 10, 19, 6, 4, 9]
-        camo=[44, 1, 1, 0, 0, 0, 0, 14, 0, 0, 0, 2, 1, 14, 0, 1, 1, 3, 1, 2, 3, 4, 5, 2]
-        rin=[10, 4, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 4, 1, 1, 3, 1, 6, 10, 16, 19, 18, 3]
-        anna=[2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 0, 8, 1, 11, 16, 16, 13, 9, 17]
-        chris=[5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 1, 19, 0, 1, 3, 7, 15, 8, 11, 18, 7]
-        haneru=[2, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 9, 2, 1, 1, 1, 0, 2, 3, 2, 1, 16, 53]
-        soya=[6, 0, 0, 0, 0, 0, 0, 14, 1, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 7, 32, 26, 6]
-        ran=[17, 1, 0, 0, 0, 0, 0, 0, 0, 2, 1, 2, 3, 2, 2, 1, 1, 4, 5, 9, 13, 23, 9, 4]
-        izu=[3, 3, 1, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 2, 0, 1, 25, 5, 5, 17, 30, 4]
-        kuku=[10, 2, 0, 0, 0, 0, 1, 2, 0, 1, 3, 1, 1, 1, 1, 5, 1, 11, 7, 8, 21, 9, 12, 2]
-        mimi=[44, 1, 1, 0, 0, 0, 0, 14, 0, 0, 0, 2, 1, 14, 0, 1, 1, 3, 1, 2, 3, 4, 5, 2]
-        hasi=[11, 12, 0, 0, 0, 0, 1, 3, 0, 0, 0, 2, 1, 0, 3, 4, 4, 0, 3, 33, 7, 12, 3, 0]
-        hira=[0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 2, 3, 0, 1, 0, 1, 1, 2, 4, 4, 15, 3, 0]
-        sesimaru=[2, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 3, 5, 10, 3, 2, 1]
+        '''
+        pato=[21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 1, 0, 1, 2, 10, 2, 0, 4, 8, 4, 5, 29, 6]
+        sha=[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 5, 21, 0, 5, 1, 2, 3, 4, 6, 4, 35]
+        mea=[17, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 14, 6, 2, 0, 1, 0, 0, 0, 0, 20, 6, 5, 8]
+        miko=[2, 0, 0, 1, 0, 0, 3, 0, 0, 1, 1, 1, 7, 1, 4, 23, 3, 7, 38, 3, 0, 2, 1, 1]
+        yuge=[0, 3, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 3, 0, 2, 2, 4, 5, 9, 28, 10, 15, 6, 9]
+        meto=[2, 2, 0, 1, 0, 0, 1, 2, 12, 2, 2, 1, 6, 2, 0, 1, 3, 4, 7, 3, 8, 9, 24, 7]
+        kanon=[10, 2, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 2, 1, 3, 3, 5, 13, 11, 19, 16, 3, 3]
+        ank=[1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3, 4, 34, 16, 8, 10, 9, 8, 2]
+        wat=[5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 4, 7, 10, 6, 9, 9, 21, 9, 5, 10]
+        camo=[24, 13, 10, 4, 0, 0, 1, 0, 0, 0, 0, 2, 0, 3, 1, 4, 1, 0, 1, 4, 1, 4, 11, 15]
+        rin=[12, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 1, 1, 1, 3, 8, 10, 19, 14, 20, 3]
+        anna=[2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 7, 1, 8, 16, 17, 14, 10, 17]
+        chris=[3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 2, 1, 15, 0, 0, 3, 7, 16, 10, 11, 22, 7]
+        haneru=[1, 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 11, 2, 0, 1, 1, 0, 1, 1, 2, 3, 16, 53]
+        soya=[5, 0, 0, 0, 0, 0, 0, 15, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7, 34, 24, 6]
+        ran=[16, 0, 0, 0, 1, 1, 0, 0, 1, 2, 1, 2, 3, 2, 1, 1, 1, 5, 6, 10, 13, 19, 9, 5]
+        izu=[2, 1, 5, 0, 0, 0, 1, 2, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 28, 4, 10, 15, 25, 4]
+        kuku=[7, 2, 0, 0, 0, 0, 1, 1, 0, 1, 2, 1, 1, 1, 1, 5, 1, 13, 5, 8, 22, 9, 14, 4]
+        mimi=[48, 0, 1, 0, 0, 0, 0, 15, 0, 0, 0, 2, 0, 14, 0, 0, 3, 3, 1, 2, 4, 1, 4, 1]
+        hasi=[11, 11, 0, 0, 0, 0, 1, 3, 1, 1, 0, 2, 1, 2, 2, 5, 5, 0, 3, 29, 8, 12, 2, 0]
+        hira=[0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 2, 2, 0, 1, 0, 0, 1, 2, 3, 5, 12, 8, 0]
+        sesimaru=[5, 1, 0, 0, 0, 0, 0, 9, 0, 0, 0, 1, 2, 2, 0, 0, 0, 1, 2, 4, 7, 4, 0, 0]
+        '''
+        json_read()
         modomodo = mode(date_list)
         print(sent_list)
         print(date_list)
+        today = datetime.date.today()
         return render_template('index.html', name=name, modomodo=modomodo, sent_list=sent_list,
         miko=miko,mea=mea, pato=pato, sha=sha, yuge=yuge, meto=meto, kanon=kanon, ank=ank, wat=wat, camo=camo, rin=rin, anna=anna, chris=chris, 
-        haneru=haneru, soya=soya, ran=ran, izu=izu, kuku=kuku, mimi=mimi, hasi=hasi, hira=hira, sesimaru=sesimaru)
+        haneru=haneru, soya=soya, ran=ran, izu=izu, kuku=kuku, mimi=mimi, hasi=hasi, hira=hira, sesimaru=sesimaru, today=today)
     except:
         error = 'error'
         print('えらーだにゃん')
         return render_template('index.html', title='flask test',error=error)
 
 
-
+def json_read():
+    json_open = open('vtube_list.json', 'r')
+    json_load = json.load(json_open)
+    person_list = ['pato','sha','mea','miko','yuge','meto','kanon','ank','wat',
+    'camo','rin','anna','chris','haneru','soya','ran','izu','kuku','mimi','hasi','hira','sesimaru']
+    # print(json_load['vtub_list'][0]['1'])
+    count_vtub = 1
+    count_number = 0
+    global pato,sha,mea,miko,yuge,meto,kanon,ank,wat,camo,rin,anna,chris,haneru,soya,ran,izu,kuku,mimi,hasi,hira,sesimaru
+    for vt in json_load.values():
+        for name in person_list:#計算量...22人だからこれでよし
+            str_count = str(count_vtub)
+            print(vt[count_number][str_count])
+            #exec使うとスコープぶっ壊れるらしいしそもそもこの位の数だったら大丈夫かなみたいな
+            print(count_number)
+            print(count_vtub)
+            count_vtub = count_vtub + 1 
+            count_number = count_number + 1
+    pato = vt[0]['1']
+    sha = vt[1]['2']
+    mea = vt[2]['3']
+    miko = vt[3]['4']
+    yuge = vt[4]['5']
+    meto = vt[5]['6']
+    kanon = vt[6]['7']
+    ank = vt[7]['8']
+    wat = vt[8]['9']
+    camo = vt[9]['10']
+    rin = vt[10]['11']
+    anna = vt[11]['12']
+    chris = vt[12]['13']
+    haneru = vt[13]['14']
+    soya = vt[14]['15']
+    ran = vt[15]['16']
+    izu = vt[16]['17']
+    kuku = vt[17]['18']
+    mimi = vt[18]['19']
+    hasi = vt[19]['20']
+    hira = vt[20]['21']
+    sesimaru = vt[21]['22']
 
 #print(date_list)
 #print(mode(date_list))
@@ -120,7 +163,7 @@ def twi():
 #    print(peko)
 #    return render_template('index.html', peko=peko)
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(debug=True, host='0.0.0.0', port=8888, threaded=True)
 
 #2020/11/1117:23    今やってることフォームのバリデーションとエラーハンドリング
 #2020/11/1120:56    バリデーション完了？
