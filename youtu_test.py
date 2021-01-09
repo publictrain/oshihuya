@@ -90,7 +90,7 @@ for movmov in movie_id:
 
 video_file_list = ['videos_report_pato.csv','videos_report_sha.csv','videos_report_mea.csv','videos_report_miko.csv',
 'videos_report_yuge.csv','videos_report_meto.csv','videos_report_kanon.csv','videos_report_anko.csv','videos_report_wat.csv',
-'videos_report_camo.csv','videos_report_rin.csv','videos_report_anna.csv','videos_report_chris.csv','videos_report_haneru.csv',
+'videos_report_camomi.csv','videos_report_rin.csv','videos_report_anna.csv','videos_report_chris.csv','videos_report_haneru.csv',
 'videos_report_soya.csv','videos_report_ran.csv','videos_report_izu.csv','videos_report_kuku.csv','videos_report_mimi.csv',
 'videos_report_hasi.csv','videos_report_hira.csv','videos_report_sesimaru.csv' ]
 
