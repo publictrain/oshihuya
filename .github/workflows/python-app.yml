@@ -5,7 +5,7 @@ name: Python application
 
 on:
   schedule:
-    - cron: '30 11 * * *'
+    - cron: '40 12 * * *'
 
 jobs:
   build:
@@ -30,7 +30,7 @@ jobs:
       run: |
         echo 'konpeko'
         python youtu_test.py
-        git add.
+        git add .
         git commit -m 'auto_peko'
         git pull
         git push origin main
