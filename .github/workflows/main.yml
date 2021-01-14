@@ -4,14 +4,9 @@
 name: Python application
 #太平洋標準時0000リソース回復つまり日本標準時１７００回復
 on:
-  workflow_dispatch:
-    inputs:
-      パラメーター名:
-        description: 'peko'
-        required: true
-        default: warning
-  #schedule:
-  #  - cron: '25 00 * * *'
+
+  schedule:
+    - cron: '00 00 * * *'
 
 jobs:
   build:
